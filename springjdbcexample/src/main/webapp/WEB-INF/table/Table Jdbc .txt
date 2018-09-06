@@ -1,0 +1,9 @@
+create table employee_table
+(
+    employee_id int PRIMARY KEY AUTO_INCREMENT NOT null,
+    employee_name varchar(50),
+    salary double DEFAULT Null,
+    email varchar(50) DEFAULT null,
+    gender varchar(10) DEFAULT null
+)
+INSERT INTO employee_table(employee_name, salary,email, gender) VALUES ('Don',90000.00,'Don@Gmail.com','Maile')

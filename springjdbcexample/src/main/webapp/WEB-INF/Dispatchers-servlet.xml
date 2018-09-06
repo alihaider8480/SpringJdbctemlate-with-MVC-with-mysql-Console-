@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <mvc:annotation-driven/>
+ 	<context:component-scan base-package="com.employee.*"/>
+ 	 
+ 	
+ 	
+ 	<!-- i had done jdbc connection within id dataSource means all database connection things are in dataSource variable name have like name,url,password. -->
+ 	
+ 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+ 		<property name="url" value="jdbc:mysql://localhost:3306/springwithjdbctable"></property>
+ 	    <property name="username" value="root"></property>
+ 	    <property name="password" value=""></property>
+	</bean>
+ 	
+ 	
+ 	
+ 	<!-- and dataSource variable those i defined upwards in that variable dataSource i had done jdbctemplate reference  variable name dataSource-->
+ 	<!-- why we used dataSource refernce c=variable in jdbcTemplate because DataSourse have many function like dataSource.getconnection thats why  -->
+ 	<!-- and when we done it like dataSource reference variable in jdbctemplate so in case jdbc template is more inhence like they have alredy datasouce connection function and many more -->
+ 	<!--  and jdbctemplates have alredy jdbc functions -->
+ 	 	
+ 	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+	</bean>
+ 	
+ 	
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>	
+</beans> 
